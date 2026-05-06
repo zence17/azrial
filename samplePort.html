@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Basic SEO Meta Tags -->
+    <title>John Lawrence Bularan | Freelance UI/UX Designer</title>
+    <meta name="description" content="Freelance UI/UX designer helping SaaS startups and digital agencies turn complex products into effortless experiences.">
+    <meta property="og:title" content="John Lawrence Bularan | UI/UX Designer">
+    <meta property="og:description" content="I design interfaces people actually want to use. Available for projects in Q3 2025.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (SVG Initial) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85' font-family='sans-serif' font-weight='bold' fill='%236C63FF'>AR</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* === CSS VARIABLES & RESET === */
+        :root {
+            --bg-dark: #0E0E0E;
+            --bg-light: #FAFAFA;
+            --accent: #6C63FF;
+            --accent-hover: #574fcf;
+            --text-dark: #111111;
+            --text-light: #FAFAFA;
+            --text-muted: #666666;
+            --text-muted-light: #A0A0A0;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-dark: rgba(255, 255, 255, 0.15);
+            
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --radius-soft: 12px;
+            --radius-pill: 100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            line-height: 1.1;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* === UTILITY CLASSES === */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .text-center { text-align: center; }
+        .accent-color { color: var(--accent); }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-light);
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border-dark);
+        }
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+        }
+        .btn-ghost:hover {
+            background-color: rgba(0,0,0,0.03);
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-soft);
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === 1. STICKY NAVIGATION === */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s, border 0.3s, backdrop-filter 0.3s;
+            padding: 20px 0;
+        }
+        
+        header.scrolled {
+            background: rgba(14, 14, 14, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-dark);
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-light);
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            border: none;
+            background: none;
+        }
+        
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-light);
+            transition: 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-dark);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                font-size: 1.5rem;
+                transform: translateY(-100%);
+                transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            .nav-links a { font-size: 1.5rem; }
+            .nav-right { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+
+        /* === 2. HERO SECTION === */
+        .hero {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+            /* Subtle grid texture via CSS */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent);
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: 0;
+            animation: float 12s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 400px; height: 400px; top: -10%; left: -5%; }
+        .orb-2 { width: 500px; height: 500px; bottom: -20%; right: -10%; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            color: var(--text-muted-light);
+            margin-bottom: 24px;
+        }
+        .badge span { color: #10B981; } /* Green dot */
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .hero p.subhead {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-muted-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 64px;
+        }
+
+        .micro-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            border-top: 1px solid var(--border-dark);
+            padding-top: 32px;
+            font-size: 0.9rem;
+            color: var(--text-muted-light);
+        }
+        .micro-stats span {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .hero-btns { flex-direction: column; }
+            .micro-stats { flex-direction: column; gap: 16px; align-items: center; }
+        }
+
+        /* === 3. SOCIAL PROOF LOGOS === */
+        .logos-section {
+            padding: 60px 0;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .logos-label {
+            text-align: center;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-light), transparent);
+        }
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-light), transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-content span {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ccc;
+            margin: 0 40px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* === 4. SERVICES === */
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .section-header h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            letter-spacing: -0.01em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .service-card.popular {
+            border: 1px solid var(--accent);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.08);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 32px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .deliverables {
+            background: rgba(0,0,0,0.02);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+        .deliverables strong {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        .deliverables p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        .service-price {
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-top: 1px solid var(--border-light);
+            padding-top: 24px;
+        }
+
+        /* === 5. SELECTED WORK === */
+        .work-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .work-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .work-card { grid-template-columns: 3fr 2fr; }
+            .work-card:nth-child(even) { direction: rtl; }
+            .work-card:nth-child(even) > * { direction: ltr; }
+        }
+
+        .work-img {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(108, 99, 255, 0.3) 100%);
+            border-radius: var(--radius-soft);
+            aspect-ratio: 16/10;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .work-img::after {
+            content: "Image Placeholder";
+            font-family: var(--font-display);
+            color: var(--accent);
+            opacity: 0.4;
+            font-size: 1.5rem;
+        }
+
+        .work-info .tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(108, 99, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 16px;
+        }
+
+        .work-info h3 {
+            font-size: clamp(24px, 3vw, 32px);
+            margin-bottom: 16px;
+        }
+
+        .work-info p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        .work-link {
+            font-weight: 500;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+        .work-link::after {
+            content: '(Coming Soon)';
+            font-size: 0.75rem;
+            color: var(--text-muted-light);
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+        .work-link:hover { color: var(--accent); gap: 12px; }
+        .work-link:hover::after { opacity: 1; }
+
+        /* === 6. PROCESS === */
+        .process-wrapper {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .process-wrapper {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+            .process-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 32px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: var(--border-light);
+                z-index: 0;
+            }
+        }
+
+        .process-step {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-light);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .process-step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* === 7. ABOUT === */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .about-grid { grid-template-columns: 2fr 3fr; }
+        }
+
+        .about-img {
+            aspect-ratio: 1/1;
+            background: rgba(0,0,0,0.03);
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .about-img::before {
+            content: "Photo Placeholder";
+            font-family: var(--font-display);
+            color: var(--text-muted-light);
+        }
+
+        .about-content h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            margin-bottom: 24px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tools-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 32px 0;
+        }
+        .tool-badge {
+            padding: 6px 16px;
+            background: #fff;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* === 8. TESTIMONIALS === */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--accent);
+            font-family: serif;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* === 9. FAQ === */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            background: none;
+            border: none;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-answer p {
+            padding-bottom: 24px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        /* === 10. FINAL CTA === */
+        .cta-section {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 120px 24px;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(40px, 5vw, 56px);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-muted-light);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .availability {
+            display: inline-block;
+            margin-bottom: 32px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: var(--radius-pill);
+            color: #10B981;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .cta-btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .cta-btn-wrapper a.email {
+            color: var(--text-muted-light);
+            font-size: 0.95rem;
+        }
+        .cta-btn-wrapper a.email:hover {
+            color: var(--text-light);
+            text-decoration: underline;
+        }
+
+        /* === 11. FOOTER === */
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 60px 0 32px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+        .footer-links a { color: var(--text-muted-light); font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--text-light); }
+
+        .footer-social {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-social a { color: var(--text-muted-light); font-size: 0.95rem; font-weight: 500; }
+        .footer-social a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-muted-light);
+            font-size: 0.85rem;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 16px; }
+        }
+
+        /* === BACK TO TOP === */
+        #backToTop {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+        }
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. STICKY NAVIGATION -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">JLB.</a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#work">Work</a>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <div class="nav-right">
+                <a href="#cta" class="btn btn-primary" id="letsTalk">Let's talk</a>
+            </div>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        
+        <div class="container hero-content fade-in">
+            <div class="badge">
+                <span>●</span> Available for projects · Q2 2026
+            </div>
+            <h1>I design interfaces people actually want to use</h1>
+            <p class="subhead">Freelance UI/UX designer helping SaaS startups and digital agencies turn complex products into effortless experiences.</p>
+            
+            <div class="hero-btns">
+                <a href="#work" class="btn btn-primary">View my work</a>
+                <a href="#cta" class="btn btn-outline">Book a free call</a>
+            </div>
+            
+            <div class="micro-stats">
+                <div><span>42</span> Projects Delivered</div>
+                <div><span>5+</span> Years Experience</div>
+                <div><span>98%</span> Client Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SOCIAL PROOF LOGO BAR -->
+    <section class="logos-section fade-in">
+        <div class="container">
+            <p class="logos-label">Trusted by teams at</p>
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <!-- Duplicated for seamless loop -->
+                    <span>Notion</span><span>Figma</span><span>Loom</span><span>Vercel</span><span>Linear</span><span>Pitch</span>
+                    <span>Notion</span><span>Figma</span><span>Loom</span><span>Vercel</span><span>Linear</span><span>Pitch</span>
+                    <span>Notion</span><span>Figma</span><span>Loom</span><span>Vercel</span><span>Linear</span><span>Pitch</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SERVICES -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What I can do for you</h2>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="card service-card fade-in" style="transition-delay: 0s;">
+                    <div class="service-icon">🔍</div>
+                    <h3>UX Research & Strategy</h3>
+                    <p>Uncover user needs and map out logical architectures before a single pixel is drawn.</p>
+                    <div class="deliverables">
+                        <strong>Deliverables:</strong>
+                        <p>User interviews, journey mapping, competitive analysis, usability testing</p>
+                    </div>
+                    <div class="service-price">From $40/hr</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card service-card popular fade-in" style="transition-delay: 0.1s;">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="service-icon">✨</div>
+                    <h3>UI Design & Prototyping</h3>
+                    <p>Beautiful, intuitive interfaces that align with your brand and drive business goals.</p>
+                    <div class="deliverables">
+                        <strong>Deliverables:</strong>
+                        <p>Wireframes, high-fidelity UI, interactive Figma prototype, handoff-ready specs</p>
+                    </div>
+                    <div class="service-price">From $80/hr</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card service-card fade-in" style="transition-delay: 0.2s;">
+                    <div class="service-icon">🧩</div>
+                    <h3>Design Systems</h3>
+                    <p>Scalable component libraries that save development time and ensure consistency.</p>
+                    <div class="deliverables">
+                        <strong>Deliverables:</strong>
+                        <p>Component library, token system, documentation, Figma + code variables</p>
+                    </div>
+                    <div class="service-price">From $50/hr</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SELECTED WORK -->
+    <section id="work" class="section-padding" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Selected work</h2>
+            </div>
+            
+            <div class="work-grid">
+                <!-- Project 1 -->
+                <div class="work-card fade-in">
+                    <div class="work-img"></div>
+                    <div class="work-info">
+                        <span class="tag">SaaS / B2B</span>
+                        <h3>Onboarding redesign</h3>
+                        <p>A complete overhaul of the first-time user experience, resulting in a significantly reduced drop-off rate.</p>
+                        <p style="color: var(--text-dark); font-weight: 500; font-size: 1rem; margin-bottom: 24px;">📈 Reduced drop-off by 34%</p>
+                        <a href="#" class="work-link">View case study &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="work-card fade-in">
+                    <div class="work-img"></div>
+                    <div class="work-info">
+                        <span class="tag">Fintech</span>
+                        <h3>Mobile banking app</h3>
+                        <p>Designed a modern, accessible, and secure mobile application for a new digital-first banking platform.</p>
+                        <p style="color: var(--text-dark); font-weight: 500; font-size: 1rem; margin-bottom: 24px;">⭐ 4.8 App Store rating post-launch</p>
+                        <a href="#" class="work-link">View case study &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="work-card fade-in">
+                    <div class="work-img"></div>
+                    <div class="work-info">
+                        <span class="tag">E-commerce</span>
+                        <h3>Design system</h3>
+                        <p>Built a robust, token-based design system bridging the gap between the design team and engineers.</p>
+                        <p style="color: var(--text-dark); font-weight: 500; font-size: 1rem; margin-bottom: 24px;">⚡ Saved 200+ dev hours per quarter</p>
+                        <a href="#" class="work-link">View case study &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MY PROCESS -->
+    <section id="process" class="section-padding">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>How we'll work together</h2>
+            </div>
+
+            <div class="process-wrapper fade-in">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Discover</h3>
+                    <p>I learn your business, users, and goals inside out.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Define</h3>
+                    <p>We align on scope, success metrics, and a clear brief.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Design</h3>
+                    <p>Iterative design with weekly check-ins and async feedback.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Deliver</h3>
+                    <p>Handoff-ready files, documentation, and post-launch support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ABOUT -->
+    <section id="about" class="section-padding" style="background-color: #fff;">
+        <div class="container about-grid">
+            <div class="about-img fade-in"></div>
+            <div class="about-content fade-in" style="transition-delay: 0.1s;">
+                <h2>Hey, I'm John Lawrence Bularan &mdash; a designer who cares about outcomes, not just outputs.</h2>
+                <p>Started as a graphic designer, fell in love with UX, now focused on product design for startups and scale-ups.</p>
+                <p>I work closely with founders, product managers, and developers. I care about shipping things that work &mdash; not just things that look good in a deck.</p>
+                
+                <div class="tools-row">
+                    <span class="tool-badge">Figma</span>
+                    <span class="tool-badge">FigJam</span>
+                    <span class="tool-badge">Notion</span>
+                    <span class="tool-badge">Lottie</span>
+                    <span class="tool-badge">Framer</span>
+                    <span class="tool-badge">Zeplin</span>
+                </div>
+
+                <a href="#" class="btn btn-ghost">Download resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. TESTIMONIALS -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What clients say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="card testimonial-card fade-in" style="transition-delay: 0s;">
+                    <div class="quote-icon">&ldquo;</div>
+                    <p class="testimonial-text">John Lawrence Bularan completely transformed our onboarding flow. Our activation rate jumped 28% in the first month. Working with them felt like having a co-founder who actually cared.</p>
+                    <div class="author">
+                        <div class="avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <p>CPO at Finflow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card testimonial-card fade-in" style="transition-delay: 0.1s;">
+                    <div class="quote-icon">&ldquo;</div>
+                    <p class="testimonial-text">Delivered a full design system in 6 weeks that our team of 12 developers actually uses. Exceptional documentation and communication throughout.</p>
+                    <div class="author">
+                        <div class="avatar">MT</div>
+                        <div class="author-info">
+                            <h4>Marcus T.</h4>
+                            <p>CTO at Buildly</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card testimonial-card fade-in" style="transition-delay: 0.2s;">
+                    <div class="quote-icon">&ldquo;</div>
+                    <p class="testimonial-text">I've worked with a lot of designers. John Lawrence Bularan is the first one who pushed back on my bad ideas &mdash; and was always right.</p>
+                    <div class="author">
+                        <div class="avatar">JR</div>
+                        <div class="author-info">
+                            <h4>Jamie R.</h4>
+                            <p>Founder at Patchwork</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="section-padding" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Common questions</h2>
+            </div>
+
+            <div class="faq-container fade-in">
+                <div class="faq-item">
+                    <button class="faq-question">What's your typical project timeline? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Most UI projects run 4–8 weeks depending on scope. Design systems take 6–10 weeks. I'll give you a precise timeline after our discovery call.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">How do you handle revisions? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Every project includes 2 rounds of revisions per milestone. Additional rounds are billed at my hourly rate (~$55/hr).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Do you work with clients remotely? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Yes, 100%. I work with clients across the US, EU, and Southeast Asia. I use Loom, Figma, Notion, and Slack to keep things seamless.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What tools do you design in? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Figma for everything UI-related. FigJam for workshops and flows. Framer for interactive prototypes when needed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I hire you for ongoing design work? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Yes — I offer a monthly retainer for 40hrs/month. Ideal for startups that need consistent design bandwidth without a full-time hire.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Do you do development too? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>I'm a designer first. I collaborate closely with your devs and deliver handoff-ready Figma files. I don't write production code.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What's your pricing? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Projects start at $2,400. Retainers from $3,200/month. I don't do hourly for project work — I quote fixed-price based on scope.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Are you available now? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>I'm currently taking on new projects for Q3. Fill out the form or book a call to check availability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FINAL CTA -->
+    <section id="cta" class="cta-section">
+        <div class="container fade-in">
+            <div class="availability">🟢 Currently available for new projects</div>
+            <h2>Ready to build something great?</h2>
+            <p>Let's talk about your project. First call is free, no pressure.</p>
+            
+            <div class="cta-btn-wrapper">
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 32px;">Book a free 30-min call &rarr;</a>
+                <a href="mailto:jlawrencebularan@gmail.com" class="email">Or email me at jlawrencebularan@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">JLB.</div>
+                
+                <div class="footer-links">
+                    <a href="#work">Work</a>
+                    <a href="#services">Services</a>
+                    <a href="#process">Process</a>
+                    <a href="#about">About</a>
+                </div>
+
+                <div class="footer-social">
+                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="#" target="_blank">Dribbble</a>
+                    <a href="#" target="_blank">Behance</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2026 John Lawrence Bularan &middot; Designed & built with care
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" aria-label="Back to top">&uarr;</button>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 2. Sticky Header Styling on Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 3. Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // 4. FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other accordions
+                faqItems.forEach(faq => {
+                    faq.classList.remove('active');
+                    faq.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Toggle current accordion
+                if (!isActive) {
+                    item.classList.add('active');
+                    const answer = item.querySelector('.faq-answer');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // 5. Back to Top Button Logic
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 800) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
