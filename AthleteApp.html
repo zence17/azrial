@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Athlete — Sport-Specific Training for Beginners</title>
+    <meta name="description" content="The only sport-specific performance plan built for complete beginners. Train like an athlete and start from zero with an 8-week structured program.">
+    <meta property="og:title" content="Apex Athlete — Sport-Specific Training for Beginners">
+    <meta property="og:description" content="Start from zero. Train like an athlete. Download the complete 8-week sport-specific training plan today.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A0A0A/FF5C00?text=APEX+ATHLETE">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M40 0 L90 0 L55 50 L85 50 L30 100 L45 55 L10 55 Z' fill='%23FF5C00'/></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            --bg-dark: #0A0A0A;
+            --bg-light: #FFFFFF;
+            --bg-gray: #F8F8F8;
+            --accent-orange: #FF5C00;
+            --accent-green: #B6F000;
+            --text-dark: #111111;
+            --text-light: #F5F5F5;
+            --text-gray: #999999;
+            --border-light: #E5E5E5;
+            --border-dark: #333333;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--text-dark); background: var(--bg-light); line-height: 1.5; overflow-x: hidden; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: 0.2s ease; }
+        img, svg { max-width: 100%; display: block; }
+        button { border: none; background: none; font-family: inherit; cursor: pointer; }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4, h5, h6, .display-font { font-family: var(--font-display); text-transform: uppercase; font-weight: 700; line-height: 1.1; }
+        h1 { font-size: clamp(48px, 8vw, 80px); color: var(--text-light); }
+        h2 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 24px; }
+        h3 { font-size: 24px; margin-bottom: 8px; }
+        p { color: var(--text-gray); font-size: 16px; margin-bottom: 16px; }
+        .text-dark { color: var(--text-dark); }
+        .text-light { color: var(--text-light); }
+        .text-orange { color: var(--accent-orange); }
+
+        /* UTILITIES */
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; }
+        .bg-gray { background-color: var(--bg-gray); }
+        .bg-dark { background-color: var(--bg-dark); color: var(--text-light); }
+        .bg-dark p { color: #A0A0A0; }
+        .text-center { text-align: center; }
+        
+        .section-label { font-family: var(--font-body); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-orange); margin-bottom: 16px; display: block; }
+        .bg-dark .section-label { color: var(--accent-green); }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 120ms; }
+        .delay-2 { transition-delay: 240ms; }
+        .delay-3 { transition-delay: 360ms; }
+
+        /* BUTTONS */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; font-family: var(--font-display); font-size: 20px; text-transform: uppercase; font-weight: 700; border-radius: 99px; transition: transform 0.2s, background 0.2s; text-align: center; }
+        .btn-orange { background: var(--accent-orange); color: var(--bg-light); border: 2px solid var(--accent-orange); }
+        .btn-orange:hover { transform: translateY(-2px); background: #E65300; }
+        .btn-outline { background: transparent; color: var(--text-light); border: 2px solid var(--bg-light); }
+        .btn-outline:hover { background: var(--bg-light); color: var(--bg-dark); }
+        
+        /* 1. STICKY NAVIGATION */
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s ease; padding: 24px 0; background: transparent; }
+        .navbar.scrolled { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-light); padding: 16px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; letter-spacing: 1px; color: var(--text-dark); transition: color 0.3s; }
+        .logo span { color: var(--accent-orange); }
+        .navbar:not(.scrolled) .logo { color: var(--text-light); }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 15px; color: var(--text-dark); }
+        .navbar:not(.scrolled) .nav-links a { color: var(--text-light); }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .nav-btn { font-size: 16px; padding: 10px 24px; }
+        
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-dark); transition: 0.3s; }
+        .navbar:not(.scrolled) .hamburger span { background: var(--text-light); }
+        
+        .mobile-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateY(-100%); transition: transform 0.4s ease; z-index: 999; }
+        .mobile-nav.open { transform: translateY(0); }
+        .mobile-nav a { color: var(--text-light); font-size: 24px; font-weight: 600; text-transform: uppercase; font-family: var(--font-display); }
+
+        @media (max-width: 900px) {
+            .nav-links, .nav-btn { display: none; }
+            .hamburger { display: flex; }
+        }
+
+        /* 2. HERO SECTION */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding-top: 80px; overflow: hidden; background-color: var(--bg-dark); }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 70% 30%, rgba(255, 92, 0, 0.08) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(255, 92, 0, 0.05) 0%, transparent 50%); pointer-events: none; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
+        
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(182, 240, 0, 0.1); border: 1px solid var(--accent-green); color: var(--accent-green); padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 24px; }
+        .hero-content h1 { margin-bottom: 24px; }
+        .hero-content p { font-size: 18px; margin-bottom: 40px; max-width: 500px; }
+        
+        .hero-btns { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; max-width: 320px; }
+        
+        .micro-stats { display: flex; gap: 24px; border-top: 1px solid var(--border-dark); padding-top: 24px; }
+        .stat-item { font-family: var(--font-display); font-size: 18px; color: var(--text-gray); text-transform: uppercase; }
+        .stat-item span { color: var(--accent-orange); font-weight: 700; margin-right: 4px; }
+
+        /* Mockup Frame */
+        .hero-mockup-wrapper { perspective: 1000px; }
+        .hero-mockup { width: 100%; max-width: 450px; aspect-ratio: 3/4; background: #151515; border: 8px solid #222; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1); transform: rotateY(-10deg) rotateX(5deg); position: relative; overflow: hidden; margin: auto; display: flex; flex-direction: column; }
+        .mockup-header { background: var(--accent-orange); padding: 20px; text-align: center; }
+        .mockup-header h4 { color: white; font-size: 24px; letter-spacing: 1px; }
+        .mockup-body { padding: 24px; flex-grow: 1; display: flex; flex-direction: column; gap: 16px; }
+        .mockup-line { width: 100%; height: 8px; background: #2A2A2A; border-radius: 4px; }
+        .mockup-line.short { width: 60%; }
+        .mockup-box { background: #2A2A2A; border-radius: 8px; flex-grow: 1; display: flex; padding: 16px; gap: 12px; }
+        .mockup-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-orange); opacity: 0.8; }
+        .mockup-text-group { display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; margin-top: 40px; }
+            .hero-content p { margin: 0 auto 40px auto; }
+            .hero-btns { margin: 0 auto 40px auto; }
+            .micro-stats { justify-content: center; }
+            .hero-mockup { transform: none; max-width: 350px; }
+        }
+
+        /* 3. PROBLEM SECTION */
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .card { background: var(--bg-light); border: 1px solid var(--border-light); border-radius: 12px; padding: 32px; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+        .card-problem { border-left: 4px solid var(--accent-orange); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card-icon { width: 48px; height: 48px; background: rgba(255, 92, 0, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--accent-orange); }
+
+        @media (max-width: 768px) { .cards-grid { grid-template-columns: 1fr; } }
+
+        /* 4. SOLUTION SECTION */
+        .solution-grid { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 24px; align-items: center; margin-top: 48px; }
+        .sol-col { background: var(--bg-light); padding: 40px; border-radius: 12px; border: 1px solid var(--border-light); height: 100%; }
+        .sol-title { font-size: 28px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+        .sol-list li { margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px; font-weight: 500; font-size: 16px; }
+        .sol-before .sol-title { color: var(--text-gray); }
+        .sol-before li { color: var(--text-gray); text-decoration: line-through; }
+        .sol-after .sol-title { color: var(--accent-orange); }
+        .sol-after li { color: var(--text-dark); }
+        .sol-icon { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 12px; font-weight: bold; }
+        .icon-x { background: #eee; color: #999; }
+        .icon-check { background: var(--accent-orange); color: white; }
+        .arrow-divider { display: flex; justify-content: center; font-size: 40px; color: var(--accent-orange); }
+        .transform-statement { text-align: center; font-family: var(--font-display); font-size: 28px; color: var(--text-dark); margin-top: 48px; text-transform: uppercase; }
+
+        @media (max-width: 900px) {
+            .solution-grid { grid-template-columns: 1fr; }
+            .arrow-divider { transform: rotate(90deg); }
+        }
+
+        /* 5. WHAT'S INSIDE */
+        .inside-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+        .inside-list { list-style: none; margin-bottom: 32px; }
+        .inside-list li { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; font-size: 16px; font-weight: 500; color: var(--text-dark); }
+        .inside-list li svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--accent-orange); margin-top: 2px; }
+        .value-stack { font-size: 16px; font-weight: 600; color: var(--text-gray); margin-bottom: 24px; }
+        .value-stack s { color: #ccc; margin-right: 8px; }
+        .value-stack span { color: var(--accent-orange); font-size: 24px; font-weight: 700; font-family: var(--font-display); }
+        
+        .pdf-white-mockup { background: var(--bg-gray); border: 1px solid var(--border-light); padding: 32px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .pdf-w-header { font-family: var(--font-display); font-size: 28px; color: var(--accent-orange); border-bottom: 2px solid var(--accent-orange); padding-bottom: 12px; margin-bottom: 24px; }
+        .pdf-w-row { display: flex; gap: 16px; margin-bottom: 16px; }
+        .pdf-w-box { height: 60px; background: white; border-radius: 6px; border: 1px solid #E5E5E5; flex-grow: 1; }
+        .pdf-w-box:first-child { flex-grow: 0; width: 60px; background: rgba(255,92,0,0.1); border-color: rgba(255,92,0,0.2); }
+
+        @media (max-width: 900px) { .inside-grid { grid-template-columns: 1fr; } .inside-grid > div:first-child { order: 2; } }
+
+        /* 6. RESULTS SECTION */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; margin-bottom: 48px; }
+        .stat-card { background: #1A1A1A; border: 1px solid #333; border-radius: 12px; padding: 32px 24px; text-align: center; }
+        .stat-num { display: block; font-family: var(--font-display); font-size: 56px; color: var(--accent-orange); line-height: 1; margin-bottom: 12px; }
+        .stat-desc { color: #A0A0A0; font-size: 14px; font-weight: 500; }
+        
+        .callout-strip { background: rgba(182, 240, 0, 0.05); border-left: 4px solid var(--accent-green); padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 16px; }
+        .callout-strip p { margin: 0; color: var(--text-light); font-weight: 500; font-style: italic; }
+
+        @media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .stats-grid { grid-template-columns: 1fr; } }
+
+        /* 7. SPORTS COVERED */
+        .sport-card { padding: 32px; border-radius: 12px; border: 1px solid var(--border-light); transition: all 0.3s; text-align: center; background: white; }
+        .sport-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255, 92, 0, 0.05); }
+        .sport-icon { font-size: 48px; margin-bottom: 16px; line-height: 1; }
+        .sport-card h3 { font-size: 24px; margin-bottom: 12px; }
+        .sport-card p { font-size: 14px; margin-bottom: 0; }
+        .sports-note { text-align: center; font-size: 14px; color: var(--text-gray); margin-top: 32px; }
+
+        /* 8. TESTIMONIALS */
+        .stars { color: var(--accent-orange); font-size: 20px; letter-spacing: 2px; margin-bottom: 16px; display: block; }
+        .test-card { padding: 40px 32px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+        .quote-mark { font-family: var(--font-display); font-size: 64px; color: var(--accent-orange); line-height: 0; position: relative; top: 20px; margin-bottom: 24px; }
+        .test-text { font-size: 16px; font-weight: 500; color: var(--text-dark); margin-bottom: 32px; flex-grow: 1; }
+        .test-author { display: flex; align-items: center; gap: 16px; }
+        .test-avatar { width: 48px; height: 48px; background: var(--text-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+        .test-info h4 { font-family: var(--font-body); font-size: 15px; font-weight: 700; text-transform: none; margin-bottom: 4px; }
+        .test-tag { display: inline-block; background: rgba(182, 240, 0, 0.2); color: #4A6300; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; }
+
+        /* 9. ABOUT */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-photo { aspect-ratio: 1; background: #E5E5E5; border-radius: 24px; border: 2px solid var(--accent-orange); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .about-photo::after { content: 'COACH LAWRENCE'; position: absolute; bottom: 20px; left: 20px; background: var(--accent-orange); color: white; font-family: var(--font-display); font-weight: 700; padding: 4px 12px; font-size: 14px; border-radius: 4px; letter-spacing: 1px; }
+        .photo-placeholder { font-size: 64px; opacity: 0.2; }
+        .cred-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+        .cred-tag { font-size: 13px; font-weight: 600; padding: 8px 16px; background: var(--bg-gray); border: 1px solid var(--border-light); border-radius: 99px; color: var(--text-dark); }
+
+        @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .about-photo { max-width: 400px; margin: 0 auto; } }
+
+        /* 10. PRICING */
+        .pricing-card-wrapper { max-width: 600px; margin: 48px auto 0; }
+        .pricing-card { background: white; border: 2px solid var(--accent-orange); border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.05); position: relative; }
+        .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent-green); color: var(--text-dark); font-family: var(--font-display); font-size: 14px; font-weight: 700; padding: 4px 16px; border-radius: 99px; letter-spacing: 1px; }
+        .plan-name { font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; }
+        .price-block { margin-bottom: 16px; display: flex; justify-content: center; align-items: center; gap: 12px; }
+        .price { font-family: var(--font-display); font-size: 80px; color: var(--accent-orange); line-height: 1; }
+        .price-strike { font-size: 24px; color: var(--text-gray); text-decoration: line-through; font-weight: 600; }
+        .price-sub { font-size: 14px; color: var(--text-gray); font-weight: 500; margin-bottom: 32px; }
+        .divider { width: 100%; height: 1px; background: var(--border-light); margin: 32px 0; }
+        
+        .pricing-list { text-align: left; margin-bottom: 32px; }
+        .pricing-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-weight: 500; font-size: 15px; }
+        .pricing-list li svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent-orange); margin-top: 3px; }
+        
+        .guarantee-box { background: rgba(255, 92, 0, 0.05); border: 1px solid rgba(255, 92, 0, 0.2); border-radius: 8px; padding: 16px; text-align: left; margin-bottom: 32px; }
+        .guarantee-box h5 { font-family: var(--font-display); font-size: 18px; color: var(--accent-orange); margin-bottom: 4px; }
+        .guarantee-box p { font-size: 13px; margin: 0; color: var(--text-dark); }
+        
+        .btn-full { width: 100%; font-size: 22px; padding: 20px; }
+        .secure-text { font-size: 12px; color: var(--text-gray); margin-top: 16px; display: block; }
+
+        @media (max-width: 600px) { .pricing-card { padding: 32px 24px; } }
+
+        /* 11. FAQ */
+        .faq-wrapper { max-width: 800px; margin: 48px auto 0; }
+        .faq-item { border-bottom: 1px solid var(--border-light); }
+        .faq-btn { width: 100%; text-align: left; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; font-size: 18px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
+        .faq-icon { width: 24px; height: 24px; position: relative; transition: transform 0.3s ease; }
+        .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--accent-orange); border-radius: 2px; }
+        .faq-icon::before { top: 11px; left: 4px; width: 16px; height: 2px; }
+        .faq-icon::after { top: 4px; left: 11px; width: 2px; height: 16px; transition: transform 0.3s; }
+        .faq-item.active .faq-icon::after { transform: rotate(90deg) scale(0); }
+        
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .faq-answer-inner { padding-bottom: 24px; color: var(--text-gray); font-size: 16px; }
+
+        /* 12. FINAL CTA */
+        .final-cta { text-align: center; padding: 120px 24px; position: relative; overflow: hidden; }
+        .final-cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 92, 0, 0.1) 0%, transparent 70%); pointer-events: none; }
+        .final-cta h2 { font-size: clamp(40px, 6vw, 64px); color: var(--text-light); margin-bottom: 24px; position: relative; z-index: 2; }
+        .final-cta p { font-size: 18px; max-width: 600px; margin: 0 auto 40px; position: relative; z-index: 2; }
+        
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 92, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 92, 0, 0); }
+        }
+        .btn-pulse { animation: pulse-ring 2s infinite; position: relative; z-index: 2; font-size: 24px; padding: 20px 48px; }
+        .final-guarantee { color: #888; font-size: 14px; margin-top: 24px; font-weight: 500; position: relative; z-index: 2; }
+
+        /* 13. FOOTER */
+        .footer { padding: 60px 0; border-top: 1px solid var(--border-light); background: var(--bg-light); text-align: center; }
+        .footer-brand { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .footer-brand span { color: var(--accent-orange); }
+        .footer-tagline { color: var(--text-gray); font-size: 14px; margin-bottom: 32px; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+        .footer-links a { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+        .footer-links a:hover { color: var(--accent-orange); }
+        .footer-divider { width: 100%; height: 1px; background: var(--border-light); margin: 32px 0; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--text-gray); }
+        @media (max-width: 600px) { .footer-bottom { flex-direction: column; text-align: center; } }
+
+        /* FLOATING ELEMENTS */
+        .mobile-sticky { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 16px; border-top: 1px solid var(--border-light); box-shadow: 0 -10px 20px rgba(0,0,0,0.05); z-index: 998; display: none; transform: translateY(100%); transition: transform 0.3s; }
+        .mobile-sticky.show { transform: translateY(0); }
+        .mobile-sticky-inner { display: flex; gap: 12px; max-width: 600px; margin: 0 auto; }
+        .mobile-sticky .btn { flex-grow: 1; padding: 12px; font-size: 18px; }
+        .close-sticky { background: #f0f0f0; border-radius: 8px; width: 48px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; color: var(--text-gray); }
+        
+        @media (max-width: 768px) {
+            .mobile-sticky { display: block; }
+        }
+
+        .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; background: var(--accent-orange); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 997; box-shadow: 0 4px 12px rgba(255, 92, 0, 0.3); }
+        .back-to-top.show { opacity: 1; pointer-events: auto; }
+        .back-to-top:hover { transform: translateY(-3px); }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. STICKY NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo"><span>APEX</span> ATHLETE</a>
+            <div class="nav-links">
+                <a href="#problem">About</a>
+                <a href="#inside">Inside</a>
+                <a href="#results">Results</a>
+                <a href="#sports">Sports</a>
+            </div>
+            <a href="#pricing" class="btn btn-orange nav-btn">GET THE PLAN — $27</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#problem" class="mobile-link">About</a>
+        <a href="#inside" class="mobile-link">Inside</a>
+        <a href="#results" class="mobile-link">Results</a>
+        <a href="#sports" class="mobile-link">Sports</a>
+        <a href="#pricing" class="mobile-link">FAQ</a>
+    </div>
+
+    <!-- 2. HERO SECTION -->
+    <header class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content fade-in">
+                <div class="hero-badge">● BEGINNER FRIENDLY · NO GYM EXPERIENCE NEEDED</div>
+                <h1>TRAIN LIKE AN ATHLETE. START FROM ZERO.</h1>
+                <p>The only sport-specific performance plan built for complete beginners. Follow a structured 8-week program designed around your sport — and show up to every session stronger, faster, and more confident.</p>
+                <div class="hero-btns">
+                    <a href="#pricing" class="btn btn-orange">DOWNLOAD NOW — $27</a>
+                    <a href="#inside" class="btn btn-outline">SEE WHAT'S INSIDE ↓</a>
+                </div>
+                <div class="micro-stats">
+                    <div class="stat-item"><span>8</span> Weeks</div>
+                    <div class="stat-item"><span>6</span> Sports</div>
+                    <div class="stat-item"><span>3,400+</span> Athletes</div>
+                </div>
+            </div>
+            
+            <div class="hero-visual fade-in delay-2">
+                <div class="hero-mockup-wrapper">
+                    <div class="hero-mockup">
+                        <div class="mockup-header">
+                            <h4>APEX ATHLETE</h4>
+                        </div>
+                        <div class="mockup-body">
+                            <div class="mockup-line"></div>
+                            <div class="mockup-line short"></div>
+                            <div style="margin-top: 16px;"></div>
+                            <div class="mockup-box">
+                                <div class="mockup-icon"></div>
+                                <div class="mockup-text-group">
+                                    <div class="mockup-line"></div>
+                                    <div class="mockup-line short"></div>
+                                </div>
+                            </div>
+                            <div class="mockup-box">
+                                <div class="mockup-icon"></div>
+                                <div class="mockup-text-group">
+                                    <div class="mockup-line"></div>
+                                    <div class="mockup-line short"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. PROBLEM SECTION -->
+    <section id="problem" class="section">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">SOUND FAMILIAR?</span>
+                <h2>STARTING OUT IS THE HARDEST PART</h2>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card card-problem fade-in delay-1">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <h3>No idea where to start</h3>
+                    <p>You want to train for your sport but every program online assumes you already know what you're doing.</p>
+                </div>
+                <div class="card card-problem fade-in delay-2">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.92-10.24l-3.26-3.26"></path></svg>
+                    </div>
+                    <h3>Wasted sessions, zero progress</h3>
+                    <p>You show up, you work hard — but without structure, you're spinning your wheels and risking burnout.</p>
+                </div>
+                <div class="card card-problem fade-in delay-3">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <h3>Fear of doing it wrong</h3>
+                    <p>Injury anxiety keeps you holding back. You need a plan that builds you up safely, step by step.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SOLUTION SECTION -->
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">THE FIX</span>
+                <h2>A PLAN BUILT AROUND YOUR SPORT. YOUR LEVEL.</h2>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="sol-col sol-before fade-in delay-1">
+                    <div class="sol-title">BEFORE</div>
+                    <ul class="sol-list">
+                        <li><div class="sol-icon icon-x">✕</div> Random YouTube workouts</li>
+                        <li><div class="sol-icon icon-x">✕</div> No progress tracking</li>
+                        <li><div class="sol-icon icon-x">✕</div> Generic fitness plans that ignore your sport</li>
+                    </ul>
+                </div>
+                
+                <div class="arrow-divider fade-in delay-2">→</div>
+                
+                <div class="sol-col sol-after fade-in delay-3">
+                    <div class="sol-title">AFTER</div>
+                    <ul class="sol-list">
+                        <li><div class="sol-icon icon-check">✓</div> 8-week sport-specific structure</li>
+                        <li><div class="sol-icon icon-check">✓</div> Weekly milestones and performance targets</li>
+                        <li><div class="sol-icon icon-check">✓</div> Beginner progressions that build real athletic ability</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 class="transform-statement fade-in">In 8 weeks, you'll go from first-timer to field-ready.</h3>
+        </div>
+    </section>
+
+    <!-- 5. WHAT'S INSIDE -->
+    <section id="inside" class="section">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">THE PLAN</span>
+                <h2>EVERYTHING YOU GET IN ONE DOWNLOAD</h2>
+            </div>
+            
+            <div class="inside-grid">
+                <div class="pdf-white-mockup fade-in delay-1">
+                    <div class="pdf-w-header">APEX ATHLETE</div>
+                    <div style="font-weight: 600; margin-bottom: 16px;">WEEK 01 — FOUNDATIONS</div>
+                    <div class="pdf-w-row">
+                        <div class="pdf-w-box"></div>
+                        <div class="pdf-w-box"></div>
+                    </div>
+                    <div class="pdf-w-row">
+                        <div class="pdf-w-box"></div>
+                        <div class="pdf-w-box"></div>
+                    </div>
+                    <div class="pdf-w-row">
+                        <div class="pdf-w-box"></div>
+                        <div class="pdf-w-box"></div>
+                    </div>
+                </div>
+                
+                <div class="inside-content fade-in delay-2">
+                    <ul class="inside-list">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 8-week progressive training calendar</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sport-specific drill breakdowns (with beginner modifications)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Warm-up & cool-down protocols for every session</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Weekly performance tracking sheets</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Nutrition basics guide for athlete beginners (BONUS)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Home & gym workout variations (no equipment for Week 1–3)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Video exercise reference guide (QR codes to YouTube demos)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sport selection guide: find your perfect starting point</li>
+                    </ul>
+                    <div class="value-stack">
+                        Total value: <s>$97</s> &nbsp;·&nbsp; Your price today: <span>$27</span>
+                    </div>
+                    <a href="#pricing" class="btn btn-orange">DOWNLOAD EVERYTHING — $27</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. RESULTS SECTION -->
+    <section id="results" class="section bg-dark">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">THE PROOF</span>
+                <h2>REAL BEGINNERS. REAL PROGRESS.</h2>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card fade-in delay-1">
+                    <span class="stat-num">87%</span>
+                    <span class="stat-desc">of users completed all 8 weeks</span>
+                </div>
+                <div class="stat-card fade-in delay-2">
+                    <span class="stat-num">3.2x</span>
+                    <span class="stat-desc">average improvement in endurance markers</span>
+                </div>
+                <div class="stat-card fade-in delay-3">
+                    <span class="stat-num">94%</span>
+                    <span class="stat-desc">said they felt sport-ready after week 6</span>
+                </div>
+                <div class="stat-card fade-in delay-4">
+                    <span class="stat-num">4.9★</span>
+                    <span class="stat-desc">average rating across 3,400+ downloads</span>
+                </div>
+            </div>
+            
+            <div class="callouts fade-in delay-2">
+                <div class="callout-strip">
+                    <p>"Jake went from never running to completing a 5K sport trial in 6 weeks"</p>
+                </div>
+                <div class="callout-strip">
+                    <p>"Maria reduced her recovery time by half after following the mobility protocols"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SPORTS COVERED -->
+    <section id="sports" class="section">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">YOUR SPORT IS IN HERE</span>
+                <h2>BUILT FOR 6 SPORTS. DESIGNED FOR BEGINNERS IN ALL OF THEM.</h2>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card sport-card fade-in delay-1">
+                    <div class="sport-icon">⚽️</div>
+                    <h3 class="display-font">SOCCER</h3>
+                    <p>Build first-touch fitness and endurance from day one</p>
+                </div>
+                <div class="card sport-card fade-in delay-2">
+                    <div class="sport-icon">🏀</div>
+                    <h3 class="display-font">BASKETBALL</h3>
+                    <p>Develop court stamina, agility, and vertical jump foundations</p>
+                </div>
+                <div class="card sport-card fade-in delay-3">
+                    <div class="sport-icon">🏊‍♂️</div>
+                    <h3 class="display-font">SWIMMING</h3>
+                    <p>Improve stroke efficiency and lap endurance progressively</p>
+                </div>
+                <div class="card sport-card fade-in delay-1">
+                    <div class="sport-icon">🎾</div>
+                    <h3 class="display-font">TENNIS</h3>
+                    <p>Build footwork, reaction speed, and arm conditioning</p>
+                </div>
+                <div class="card sport-card fade-in delay-2">
+                    <div class="sport-icon">🏃‍♂️</div>
+                    <h3 class="display-font">RUNNING</h3>
+                    <p>Go from 0 to sport-ready pace with zero injury risk</p>
+                </div>
+                <div class="card sport-card fade-in delay-3">
+                    <div class="sport-icon">🥋</div>
+                    <h3 class="display-font">MARTIAL ARTS</h3>
+                    <p>Develop functional strength, flexibility, and core stability</p>
+                </div>
+            </div>
+            
+            <p class="sports-note fade-in">Not sure which sport fits you? The included Sport Selection Guide walks you through it.</p>
+        </div>
+    </section>
+
+    <!-- 8. TESTIMONIALS -->
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">WHAT BEGINNERS SAY</span>
+                <h2>THEY STARTED WHERE YOU ARE</h2>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card test-card fade-in delay-1">
+                    <div>
+                        <span class="stars">★★★★★</span>
+                        <div class="quote-mark">"</div>
+                        <p class="test-text">I'd never trained seriously before. By week 4 I was doing drills I thought only 'real' athletes could do. The beginner modifications made everything approachable without feeling dumbed-down.</p>
+                    </div>
+                    <div class="test-author">
+                        <div class="test-avatar">TM</div>
+                        <div class="test-info">
+                            <h4>Tyler M.</h4>
+                            <span class="test-tag">Soccer · 6 weeks in</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card test-card fade-in delay-2">
+                    <div>
+                        <span class="stars">★★★★★</span>
+                        <div class="quote-mark">"</div>
+                        <p class="test-text">I downloaded this before my first basketball tryout. Made the team. The sport-specific conditioning drills were exactly what I needed — not just generic cardio.</p>
+                    </div>
+                    <div class="test-author">
+                        <div class="test-avatar">PS</div>
+                        <div class="test-info">
+                            <h4>Priya S.</h4>
+                            <span class="test-tag">Basketball · Full 8 weeks</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card test-card fade-in delay-3">
+                    <div>
+                        <span class="stars">★★★★★</span>
+                        <div class="quote-mark">"</div>
+                        <p class="test-text">I was terrified I'd injure myself. The progressive structure meant I never felt overwhelmed. Week 8 felt like a completely different body than week 1.</p>
+                    </div>
+                    <div class="test-author">
+                        <div class="test-avatar">CR</div>
+                        <div class="test-info">
+                            <h4>Connor R.</h4>
+                            <span class="test-tag">Running · 8-week grad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. ABOUT THE CREATOR -->
+    <section class="section">
+        <div class="container about-grid">
+            <div class="about-photo fade-in">
+                <div class="photo-placeholder">📸</div>
+            </div>
+            <div class="about-content fade-in delay-1">
+                <span class="section-label">WHO MADE THIS</span>
+                <h2>I WAS A BEGINNER ONCE TOO.</h2>
+                <p>I spent my first year of athletic training doing everything wrong — random YouTube workouts, no structure, three minor injuries, and zero sport-specific preparation. I wasted 12 months I'll never get back.</p>
+                <p>So I built the plan I wish I'd had: progressive, beginner-safe, sport-specific, and actually enjoyable to follow. Over 3,400 athletes have now used it to go from zero to competition-ready. This is for you.</p>
+                
+                <div class="cred-tags">
+                    <span class="cred-tag">Certified S&C Coach</span>
+                    <span class="cred-tag">10+ Years Coaching</span>
+                    <span class="cred-tag">Former Division II Athlete</span>
+                    <span class="cred-tag">3,400+ Athletes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. PRICING -->
+    <section id="pricing" class="section bg-gray">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">GET STARTED TODAY</span>
+                <h2>ONE PLAN. ONE PAYMENT. YOURS FOREVER.</h2>
+            </div>
+            
+            <div class="pricing-card-wrapper fade-in delay-1">
+                <div class="pricing-card">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="plan-name">APEX ATHLETE COMPLETE PLAN</h3>
+                    
+                    <div class="price-block">
+                        <span class="price">$27</span>
+                        <span class="price-strike">$97</span>
+                    </div>
+                    <p class="price-sub">One-time payment · Instant PDF download · Keep forever</p>
+                    
+                    <div class="divider"></div>
+                    
+                    <ul class="pricing-list">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 8-week progressive training calendar</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sport-specific drill breakdowns</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Warm-up & cool-down protocols</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Weekly tracking & Nutrition guide</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Home & gym workout variations</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Video exercise reference guide</li>
+                    </ul>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="guarantee-box">
+                        <h5>30-DAY MONEY-BACK GUARANTEE</h5>
+                        <p>If you follow the plan and don't see progress, email us for a full refund. No questions asked.</p>
+                    </div>
+                    
+                    <a href="#pricing" class="btn btn-orange btn-full">BUY NOW & DOWNLOAD INSTANTLY — $27</a>
+                    <span class="secure-text">Secure checkout · PDF delivered instantly to your email · Works on all devices</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ SECTION -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center fade-in">
+                <span class="section-label">GOT QUESTIONS?</span>
+                <h2>EVERYTHING BEGINNERS WANT TO KNOW</h2>
+            </div>
+            
+            <div class="faq-wrapper fade-in delay-1">
+                
+                <div class="faq-item">
+                    <button class="faq-btn">Do I need any gym experience to use this plan? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Zero. This plan was built specifically for complete beginners. Every exercise includes beginner modifications and clear instructions. If you've never trained before, this is exactly the right starting point.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">What equipment do I need? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">None for the first 3 weeks. Weeks 4–8 introduce optional gym equipment, but every session has a home-workout alternative using bodyweight only.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">How much time does each session take? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Between 30–45 minutes per session. The plan runs 4 days per week, leaving you recovery time and flexibility around your schedule.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">What format is the download? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">A professionally formatted PDF you can save to any device, print out, or view on your phone at the gym. Plus QR codes linking to exercise demo videos.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">What if the plan doesn't work for me? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">We offer a full 30-day money-back guarantee. If you follow the plan and aren't satisfied, email us and you'll get a complete refund — no hassle.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">Is this plan right for my specific sport? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">The plan covers 6 sports: Soccer, Basketball, Swimming, Tennis, Running, and Martial Arts. An included Sport Selection Guide helps you pick the right track if you're unsure.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">What age range is this for? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">The plan is designed for adults 16 and over. The beginner progressions are safe for any fitness level within that range.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">How quickly will I see results? <div class="faq-icon"></div></button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Most users report feeling noticeably stronger and more sport-ready by the end of Week 4. By Week 8, the transformation in stamina, confidence, and sport-specific fitness is significant.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FINAL CTA -->
+    <section class="final-cta bg-dark fade-in">
+        <div class="container">
+            <div class="hero-badge" style="margin-bottom: 24px; position: relative; z-index:2;">● AVAILABLE NOW · INSTANT DOWNLOAD</div>
+            <h2 class="display-font">YOUR ATHLETIC JOURNEY STARTS TODAY.</h2>
+            <p>Join 3,400+ beginners who stopped waiting and started training. Download the plan, follow the structure, and show up to your sport a different athlete.</p>
+            <a href="#pricing" class="btn btn-orange btn-pulse">GET APEX ATHLETE — $27 →</a>
+            <div class="final-guarantee">30-Day Money-Back Guarantee · Secure Payment · Instant Delivery</div>
+        </div>
+    </section>
+
+    <!-- 13. FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand"><span>APEX</span> ATHLETE</div>
+            <p class="footer-tagline">Train smarter. Start stronger.</p>
+            
+            <div class="footer-links">
+                <a href="#problem">About</a>
+                <a href="#inside">Inside</a>
+                <a href="#results">Results</a>
+                <a href="#sports">Sports</a>
+                <a href="#pricing">FAQ</a>
+            </div>
+            
+            <a href="mailto:apexathlete@outlook.com" style="font-size: 14px; color: var(--text-gray);">apexathlete@outlook.com</a>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
+                <div>© 2026 Apex Athlete · Privacy Policy · Refund Policy</div>
+                <div>Designed for beginners. Built for athletes.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Mobile Bottom Bar -->
+    <div class="mobile-sticky" id="mobile-sticky">
+        <div class="mobile-sticky-inner">
+            <a href="#pricing" class="btn btn-orange">DOWNLOAD NOW — $27</a>
+            <button class="close-sticky" id="close-sticky">✕</button>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileNav.classList.toggle('open');
+            // Animate hamburger to X
+            const spans = hamburger.querySelectorAll('span');
+            if (mobileNav.classList.contains('open')) {
+                spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+                spans.forEach(s => s.style.background = '#F5F5F5');
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                // Reset color based on scroll state
+                if(!navbar.classList.contains('scrolled')) {
+                    spans.forEach(s => s.style.background = '#F5F5F5');
+                } else {
+                    spans.forEach(s => s.style.background = '#111111');
+                }
+            }
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const btn = item.querySelector('.faq-btn');
+            const answer = item.querySelector('.faq-answer');
+            
+            btn.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                });
+                
+                // Open clicked if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Intersection Observer for Scroll Fade-Ins
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Mobile Sticky Bottom Bar & Back to Top behavior
+        const mobileSticky = document.getElementById('mobile-sticky');
+        const closeSticky = document.getElementById('close-sticky');
+        const backToTop = document.getElementById('back-to-top');
+        let stickyDismissed = false;
+
+        closeSticky.addEventListener('click', () => {
+            mobileSticky.style.display = 'none';
+            stickyDismissed = true;
+        });
+
+        window.addEventListener('scroll', () => {
+            // Mobile sticky bar
+            if (window.scrollY > 600 && !stickyDismissed) {
+                mobileSticky.classList.add('show');
+            } else {
+                mobileSticky.classList.remove('show');
+            }
+            
+            // Back to top button
+            if (window.scrollY > 1000) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
